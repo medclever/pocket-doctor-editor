@@ -1,0 +1,25 @@
+{
+  "name": "pocket-doctor-editor",
+  "version": "1.0.0",
+  "description": "Editor for application Pocket doctor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/medclever/pocket-doctor-editor.git"
+  },
+  "author": "Eugen Shaposhnikov <eawapownikov@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/medclever/pocket-doctor-editor/issues"
+  },
+  "homepage": "https://github.com/medclever/pocket-doctor-editor#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.10",
+    "sqlite": "^4.0.23",
+    "sqlite3": "^5.0.2",
+    "uuid": "^8.3.2"
+  }
+}
