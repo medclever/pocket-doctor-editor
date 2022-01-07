@@ -1,5 +1,6 @@
 const sqlite3 = require('sqlite3');
 const fs = require('fs');
+const path = require('path');
 const { open } = require('sqlite');
 const ArticleRepository = require('./src/repo/ArticleRepository');
 const prepareTextAsParts = require('./src/prepareTextAsParts');
@@ -18,7 +19,10 @@ const ImageRepository = require('./src/repo/ImageRepository');
       repoArticle.loadByID(1),
       repoArticle.loadByID(2),
       repoArticle.loadByID(3),
+      repoArticle.loadByID(4),
     ]);
+
+    const exportRoot = path.join(__dirname, '../pocket-doctor/export');
 
     const partsPromises = [];
     for (const article of articles) {
@@ -27,7 +31,7 @@ const ImageRepository = require('./src/repo/ImageRepository');
     const data = await Promise.all(partsPromises);
     let i = 0;
     for (const article of articles) {
-      fs.writeFileSync(`export/article_${article.data.id}.json`, JSON.stringify(data[i++]));
+      fs.writeFileSync(`${exportRoot}/article_${article.data.id}.json`, JSON.stringify(data[i++]));
     }
     
     let indexFile = 
@@ -35,5 +39,5 @@ const ImageRepository = require('./src/repo/ImageRepository');
       articles.map(a => `    require("./article_${a.data.id}.json"),`).join('\n') + '\n' +
       `];`
 
-    fs.writeFileSync("export/index.ts", indexFile);
+    fs.writeFileSync(`${exportRoot}/index.ts`, indexFile);
 })()
