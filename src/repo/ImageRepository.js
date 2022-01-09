@@ -12,12 +12,25 @@ module.exports = class ImageRepository {
 
   parseRow(row) {
     let imageFile = row.file_lang.trim().length > 0 ? row.file_lang : row.file;
-
-    if (imageFile) {
-      imageFile = 'asset:/images/' + imageFile;
-    }
-
     return new ImageEntity(row.image_id, row.lang_id, row.name, imageFile);
+  }
+
+  /**
+   * @returns {Promise<ImageEntity>}
+   */
+  async loadAll() {
+    let query = sqlBase;
+
+    const rows = await this.db.all(query);
+    let images = rows.map(row => {
+      const image = this.parseRow(row)
+      // TODO;
+      image.width = 100;
+      image.height = 100;
+      return image;
+    });
+
+    return images;
   }
 
   /**

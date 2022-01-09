@@ -18,6 +18,7 @@ const ImageRepository = require('./src/repo/ImageRepository');
     const exportRoot = path.join(__dirname, '../pocket-doctor/export');
     const articles = await repoArticle.loadForMenu(false);
 
+    // articles
     const partsPromises = [];
     for (const article of articles) {
       partsPromises.push(prepareTextAsParts(article, repoArticle, repoImage))
@@ -28,18 +29,29 @@ const ImageRepository = require('./src/repo/ImageRepository');
       fs.writeFileSync(`${exportRoot}/article_${article.data.id}.json`, JSON.stringify(data[i++]));
     }
     
+    // menu.json
     let indexFile = 
       `export const articles = [` + '\n' +
       articles.map(a => `    require("./article_${a.data.id}.json"),`).join('\n') + '\n' +
       `];`
 
     fs.writeFileSync(`${exportRoot}/articles.ts`, indexFile);
-    
-    console.log(articles.map(a => a.data.code));
     const menu = articles.map((a, index) => ({
       id: a.data.id,
       title: a.data.title,
+      image_id: a.data.image_id,
       position: a.data.code === 'about' ? '' : String(index - 1),
     }));
     fs.writeFileSync(`${exportRoot}/menu.json`, JSON.stringify(menu));
+    
+    // images.ts
+    const images = await repoImage.loadAll()
+    let imageFile = `export const images: any = {` + '\n'
+    for (const image of images) {
+      imageFile += `    "${image.id}": {` + '\n'
+      imageFile += `        file: require("../assets/images/${image.file}"),` + `\n`
+      imageFile += `    },` + '\n'
+    }
+    imageFile += `};`
+    fs.writeFileSync(`${exportRoot}/images.ts`, imageFile);
 })()

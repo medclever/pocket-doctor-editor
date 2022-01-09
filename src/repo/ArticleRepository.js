@@ -13,9 +13,6 @@ module.exports = class ArticleRepository {
 
   parseRow(row) {
     var imageFile = '';
-    if (row.image_file) {
-      imageFile = 'asset:/images/' + row.image_file.replace(/\.jpeg/, '.jpg');
-    }
 
     let article = new ArticleEntity({
       id: row.article_id,
@@ -31,6 +28,7 @@ module.exports = class ArticleRepository {
       must_not: row.must_not,
       important: row.important,
       text: row.text,
+      image_id: row.image_id,
     });
 
     return article;
@@ -57,8 +55,6 @@ module.exports = class ArticleRepository {
       ` WHERE al.lang_id = ${this.langID}` + 
       (free ? ' ORDER BY a.is_free DESC, a.position ASC'
            : ' ORDER BY a.position ASC');
-
-        console.log(query);
 
     const rows = await this.db.all(query);
     return rows.map(row => this.parseRow(row));
