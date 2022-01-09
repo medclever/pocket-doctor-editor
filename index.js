@@ -15,14 +15,8 @@ const ImageRepository = require('./src/repo/ImageRepository');
     const repoArticle = new ArticleRepository(db, 1);
     const repoImage = new ImageRepository(db, 1);
 
-    const articles = await Promise.all([
-      repoArticle.loadByID(1),
-      repoArticle.loadByID(2),
-      repoArticle.loadByID(3),
-      repoArticle.loadByID(4),
-    ]);
-
     const exportRoot = path.join(__dirname, '../pocket-doctor/export');
+    const articles = await repoArticle.loadForMenu(false);
 
     const partsPromises = [];
     for (const article of articles) {
@@ -39,5 +33,13 @@ const ImageRepository = require('./src/repo/ImageRepository');
       articles.map(a => `    require("./article_${a.data.id}.json"),`).join('\n') + '\n' +
       `];`
 
-    fs.writeFileSync(`${exportRoot}/index.ts`, indexFile);
+    fs.writeFileSync(`${exportRoot}/articles.ts`, indexFile);
+    
+    console.log(articles.map(a => a.data.code));
+    const menu = articles.map((a, index) => ({
+      id: a.data.id,
+      title: a.data.title,
+      position: a.data.code === 'about' ? '' : String(index - 1),
+    }));
+    fs.writeFileSync(`${exportRoot}/menu.json`, JSON.stringify(menu));
 })()

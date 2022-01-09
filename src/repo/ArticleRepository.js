@@ -50,4 +50,17 @@ module.exports = class ArticleRepository {
 
     return article;
   }
+
+  async loadForMenu(free) {
+    var query =
+      articleSql + 
+      ` WHERE al.lang_id = ${this.langID}` + 
+      (free ? ' ORDER BY a.is_free DESC, a.position ASC'
+           : ' ORDER BY a.position ASC');
+
+        console.log(query);
+
+    const rows = await this.db.all(query);
+    return rows.map(row => this.parseRow(row));
+  }
 }
