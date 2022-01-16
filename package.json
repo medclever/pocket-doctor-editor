@@ -4,6 +4,7 @@
   "description": "Editor for application Pocket doctor",
   "main": "index.js",
   "scripts": {
+    "build": "cd frontend && npm run build",
     "export": "cd export && node export.js",
     "start": "node server.js"
   },

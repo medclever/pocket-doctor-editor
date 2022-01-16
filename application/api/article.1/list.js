@@ -1,6 +1,6 @@
 ({
   access: 'public',
   async method({ name }) {
-    return { text: "ololoolo" };
+    return { data: [] };
   },
 });
