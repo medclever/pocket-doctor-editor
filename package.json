@@ -4,7 +4,8 @@
   "description": "Editor for application Pocket doctor",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "export": "cd export && node export.js",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   "homepage": "https://github.com/medclever/pocket-doctor-editor#readme",
   "dependencies": {
     "cheerio": "^1.0.0-rc.10",
+    "impress": "^2.6.6",
     "sqlite": "^4.0.23",
     "sqlite3": "^5.0.2",
     "uuid": "^8.3.2"

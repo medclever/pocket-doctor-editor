@@ -2,20 +2,20 @@ const sqlite3 = require('sqlite3');
 const fs = require('fs');
 const path = require('path');
 const { open } = require('sqlite');
-const ArticleRepository = require('./src/repo/ArticleRepository');
-const prepareTextAsParts = require('./src/prepareTextAsParts');
-const ImageRepository = require('./src/repo/ImageRepository');
+const ArticleRepository = require('./repo/ArticleRepository');
+const prepareTextAsParts = require('./prepareTextAsParts');
+const ImageRepository = require('./repo/ImageRepository');
 
 (async () => {
     const db = await open({
-      filename: './database.db',
+      filename: '../database.db',
       driver: sqlite3.Database
     })
 
     const repoArticle = new ArticleRepository(db, 1);
     const repoImage = new ImageRepository(db, 1);
 
-    const exportRoot = path.join(__dirname, '../pocket-doctor/export');
+    const exportRoot = path.join(__dirname, '../../pocket-doctor/export');
     const articles = await repoArticle.loadForMenu(false);
 
     // articles
