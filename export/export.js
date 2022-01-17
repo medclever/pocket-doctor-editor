@@ -1,7 +1,7 @@
 const sqlite3 = require('sqlite3');
+const { open } = require('sqlite');
 const fs = require('fs');
 const path = require('path');
-const { open } = require('sqlite');
 const ArticleRepository = require('./repo/ArticleRepository');
 const prepareTextAsParts = require('./prepareTextAsParts');
 const ImageRepository = require('./repo/ImageRepository');

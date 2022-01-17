@@ -22,7 +22,7 @@
     timeout: 3000,
   },
   workers: {
-    pool: 16,
+    pool: 4,
     wait: 2000,
     timeout: 5000,
   },
