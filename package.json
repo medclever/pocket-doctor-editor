@@ -23,6 +23,7 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.10",
     "impress": "^2.6.6",
+    "metasql": "^2.0.2",
     "pg": "^8.7.1",
     "sqlite": "^4.0.23",
     "sqlite3": "^5.0.2",

@@ -4,7 +4,7 @@ import { ResourceItemShort } from "../types";
 import { Metacom } from 'metacom';
 
 //@ts-ignore
-window.metacom = Metacom.create('http://localhost:8002');
+window.metacom = Metacom.create('http://127.0.0.1:8001/api');
 
 type filterValue = 'hasChange' | 'toSync';
 export class ResourceListModel extends BaseModel implements Loadable {
@@ -20,11 +20,11 @@ export class ResourceListModel extends BaseModel implements Loadable {
   }
   
   async load(): Promise<void> {
-    // const metacom = Metacom.create('http://localhost:8000');
-    // const { api } = metacom;
-    // metacom.load('article')
+    const metacom = Metacom.create('http://127.0.0.1:8001/api');
+    const { api } = metacom;
+    await metacom.load('article')
     // @ts-ignore
-    // console.log(await api.article.list({}))
+    console.log(await api.article.list({}))
     // const filter = Object.entries(this.filter).map(([key, value]) => `${key}=${value}`).join("&");
     // const response = await axios.get(config.apiHost + "/api/v1/resources" + (filter?'?'+filter:''));
     // runInAction(async () => {
