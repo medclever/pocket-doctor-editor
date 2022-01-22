@@ -1,13 +1,25 @@
-## Tables
+# Get started
+
+## Install packages
 ```
-attribute
-attribute_lang
-lang
-image_type
-test
-image_lang
-image
-article_lang
-article
-android_metadata
+npm ci && cd frontend && npm ci
+```
+
+## Start postgres
+```
+docker-compose up
+```
+
+## Init database
+```
+npm run db:structure
+```
+## Build frontend
+```
+npm run build
+```
+
+## Start app
+```
+npm run start
 ```

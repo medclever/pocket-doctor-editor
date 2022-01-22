@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "cd frontend && npm run build",
-    "export": "cd export && node export.js",
+    "db:structure": "cd db && bash setup.sh",
+    "export": "node export/export.js",
+    "export:postgres": "node export/export-to-postgres.js",
     "start": "node server.js"
   },
   "repository": {
@@ -21,6 +23,7 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.10",
     "impress": "^2.6.6",
+    "pg": "^8.7.1",
     "sqlite": "^4.0.23",
     "sqlite3": "^5.0.2",
     "uuid": "^8.3.2"
