@@ -11,15 +11,16 @@ module.exports = class ImageRepository {
   }
 
   parseRow(row) {
-    let imageFile = row.file_lang.trim().length > 0 ? row.file_lang : row.file;
-    return new ImageEntity(row.image_id, row.lang_id, row.name, imageFile);
+    let file = row.file_lang && row.file_lang.trim().length > 0 ? row.file_lang : row.file;
+    file = file.replace("jpeg", "jpg");
+    return new ImageEntity(row.image_id, row.lang_id, row.name, file);
   }
 
   /**
    * @returns {Promise<ImageEntity>}
    */
   async loadAll() {
-    let query = sqlBase;
+    let query = sqlBase + ' WHERE iml.lang_id = ' + this.langID;
 
     const rows = await this.db.all(query);
     let images = rows.map(row => {
