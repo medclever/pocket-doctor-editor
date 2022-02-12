@@ -2,13 +2,14 @@ const sqlite3 = require('sqlite3');
 const { open } = require('sqlite');
 const fs = require('fs');
 const path = require('path');
+const sizeOf = require('image-size')
 const ArticleRepository = require('./repo/ArticleRepository');
 const prepareTextAsParts = require('./prepareTextAsParts');
 const ImageRepository = require('./repo/ImageRepository');
 
 (async () => {
     const db = await open({
-      filename: './database.db',
+      filename: './data/database.db',
       driver: sqlite3.Database
     })
 
@@ -53,13 +54,14 @@ const ImageRepository = require('./repo/ImageRepository');
 
       const images = await repoImage.loadAll();
       for (const image of images) {
+        const dimensions = sizeOf('data/images/' + image.file)
         const dataJSON = {
           id: image.id,
           lang_id: lang.langId,
           name: image.name,
           file: 'asset:/images/' + image.file,
-          width: 100,
-          height: 100,
+          width: dimensions.width,
+          height: dimensions.height,
         }
         fs.writeFileSync(`${exportRoot}/data/image_${image.id}_${lang.code}.json`, JSON.stringify(dataJSON));
         imageAll.push(`    require("./data/image_${image.id}_${lang.code}.json"),`);
@@ -106,9 +108,9 @@ const ImageRepository = require('./repo/ImageRepository');
     `export type ImageData = { \n` +
     `    id: number, \n` +
     `    lang_id: number, \n` +
-    `    name: boolean, \n` +
+    `    name: string, \n` +
     `    file: string, \n` +
-    `    width: string, \n` +
+    `    width: number, \n` +
     `    height: number, \n` +
     `} \n` +
     `export const images: ImageData[] = [` + '\n' +

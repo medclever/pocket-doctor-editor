@@ -13,7 +13,7 @@ const { open } = require('sqlite');
   pg.connect()
 
   const sqlite = await open({
-    filename: './database.db',
+    filename: './data/database.db',
     driver: sqlite3.Database
   })
 

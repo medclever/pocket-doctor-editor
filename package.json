@@ -22,6 +22,7 @@
   "homepage": "https://github.com/medclever/pocket-doctor-editor#readme",
   "dependencies": {
     "cheerio": "^1.0.0-rc.10",
+    "image-size": "^1.0.1",
     "impress": "^2.6.6",
     "metasql": "^2.0.2",
     "pg": "^8.7.1",
