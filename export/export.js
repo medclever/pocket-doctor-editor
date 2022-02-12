@@ -25,19 +25,20 @@ const ImageRepository = require('./repo/ImageRepository');
       const articles = await repoArticle.loadForMenu(false);
 
       // save article item
-      const partsPromises = [];
-      for (const article of articles) {
-        partsPromises.push(prepareTextAsParts(article, repoArticle, repoImage))
-      }
-      const data = await Promise.all(partsPromises);
       let i = 0;
       for (const article of articles) {
         const dataJSON = {
           id: article.data.id,
           code: article.data.code,
           image_id: article.data.image_id,
+          lang_id: lang.langId,
           langCode: lang.code,
-          data: data[i++],
+          title: article.data.title,
+          necessary: article.data.necessary,
+          possible: article.data.possible,
+          must_not: article.data.must_not,
+          important: article.data.important,
+          text: article.data.text,
         }
         fs.writeFileSync(`${exportRoot}/data/article_${article.data.id}_${lang.code}.json`, JSON.stringify(dataJSON));
         articleAll.push(`    require("./data/article_${article.data.id}_${lang.code}.json"),`);
@@ -72,14 +73,15 @@ const ImageRepository = require('./repo/ImageRepository');
       `    code: string, \n` +
       `    langCode: 'ru' | 'en', \n` +
       `    image_id: number, \n` +
-      `    data: { title: string } \n` +
+      `    title: string, \n` +
+      `    necessary: string, \n` +
+      `    possible: string, \n` +
+      `    must_not: string, \n` +
+      `    important: string, \n` +
+      `    text: string, \n` +
       `} \n` +
       `export const articles: ArticleData[] = [` + '\n' +
-        articleAll.sort((a, b) => {
-          const [, a1] = a.match(/article_(\d+)/);
-          const [, b1] = b.match(/article_(\d+)/);
-          return parseInt(a1) > parseInt(b1) ? 1 : -1
-        }).join('\n') + '\n' +
+        articleAll.join('\n') + '\n' +
       `];`
     fs.writeFileSync(`${exportRoot}/articles.ts`, indexFile);
 
