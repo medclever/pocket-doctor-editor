@@ -34,6 +34,7 @@ const ImageRepository = require('./repo/ImageRepository');
           image_id: article.data.image_id,
           lang_id: lang.langId,
           langCode: lang.code,
+          is_locked: article.data.is_locked,
           title: article.data.title,
           necessary: article.data.necessary,
           possible: article.data.possible,
@@ -75,6 +76,7 @@ const ImageRepository = require('./repo/ImageRepository');
       `    code: string, \n` +
       `    langCode: 'ru' | 'en', \n` +
       `    image_id: number, \n` +
+      `    is_locked: boolean, \n` +
       `    title: string, \n` +
       `    necessary: string, \n` +
       `    possible: string, \n` +
