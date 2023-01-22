@@ -1,6 +1,6 @@
 {
-  "name": "@pocket-doctor-editor/webui",
-  "version": "1.0.0",
+  "name": "@pde/frontend",
+  "version": "0.1.0",
   "author": "Шапошников Евгений <eawapownikov@gmail.com>",
   "private": false,
   "dependencies": {
@@ -22,7 +22,7 @@
   },
   "scripts": {
     "start": "PORT=3001 react-scripts start",
-    "build": "react-scripts build && rm -R ../application/static && mv ./build ../application/static",
+    "build": "react-scripts build && rm -R ../../.static || 0 && mv ./build ../../.static",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

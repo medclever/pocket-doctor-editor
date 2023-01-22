@@ -1,0 +1,31 @@
+{
+  "name": "@pde/server",
+  "version": "0.1.0",
+  "description": "Сервер редактора приложения \"Карманный доктор\"",
+  "main": "index.js",
+  "private": false,
+  "scripts": {
+    "start": "node index.js",
+    "test": "metatests tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/medclever/pocket-doctor-editor.git"
+  },
+  "keywords": [
+    "mobile",
+    "app",
+    "editor"
+  ],
+  "author": "Eugen Shaposhnikov <eawapownikov@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/medclever/pocket-doctor-editor/issues"
+  },
+  "homepage": "https://github.com/medclever/pocket-doctor-editor#readme",
+  "dependencies": {
+    "@be-true/config": "^0.3.0",
+    "@be-true/docs": "^0.3.0",
+    "@be-true/server": "^0.3.0"
+  }
+}

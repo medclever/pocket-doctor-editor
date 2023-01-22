@@ -1,14 +1,15 @@
 {
-  "name": "pocket-doctor-editor",
+  "name": "@pde",
   "version": "1.0.0",
   "description": "Editor for application Pocket doctor",
   "main": "index.js",
+  "workspaces": [ "packages/*" ],
   "scripts": {
-    "build": "cd frontend && npm run build",
-    "db:structure": "cd db && bash setup.sh",
+    "start": "npm run start -w @pde/server",
+    "build": "npm run build -w @pde/frontend",
     "export": "node export/export.js",
     "export:postgres": "node export/export-to-postgres.js",
-    "start": "node server.js"
+    "db:structure": "cd db && bash setup.sh"
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,6 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.10",
     "image-size": "^1.0.1",
-    "impress": "^2.6.6",
     "metasql": "^2.0.2",
     "pg": "^8.7.1",
     "sqlite": "^4.0.23",
