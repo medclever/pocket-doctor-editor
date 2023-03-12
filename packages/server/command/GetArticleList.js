@@ -4,8 +4,9 @@ class GetArticleList extends Command {
 
     code = 'article/GetArticleList'
 
-    async handle(di, params) {
-        return [{ id: 1 }, { id: 2 }];
+    async handle(params, { repoArticle }) {
+        const articles = await repoArticle.getList();
+        return articles.map(i => i.presentToList(1));
     }
 
 }
