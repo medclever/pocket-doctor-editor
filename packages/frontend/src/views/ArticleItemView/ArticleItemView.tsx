@@ -1,19 +1,18 @@
 import { observer } from "mobx-react-lite";
 import { FC } from "react";
 import { RouterModel } from "../../core";
-import { ResourceItemModel } from "../../models";
+import { ArticleItemModel } from "../../models";
 import style from "./style.module.css";
 
 interface Props {
-  model: ResourceItemModel;
+  model: ArticleItemModel;
   router: RouterModel;
 }
-export const ResourceItemView: FC<Props> = observer(({ model, router }) => {
+export const ArticleItemView: FC<Props> = observer(({ model, router }) => {
   const { item } = model;
-  const attrs: any[] = model.item.attrs ?? [];
   return (
     <div>
-      <h1>Resource "{item.id}"</h1>
+      <h1>Article ""</h1>
     </div>
   );
 });

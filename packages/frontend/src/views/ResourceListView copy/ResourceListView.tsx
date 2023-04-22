@@ -2,11 +2,11 @@ import { FC } from "react";
 import { observer } from "mobx-react-lite";
 
 import { RouterModel } from "../../core";
-import { ResourceListModel } from "../../models";
+import { ArticleListModel } from "../../models";
 import style from "./style.module.css";
 
 interface Props {
-  model: ResourceListModel;
+  model: ArticleListModel;
   router: RouterModel;
 }
 export const ResourceListView: FC<Props> = observer(({ model, router }) => {

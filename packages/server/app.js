@@ -3,6 +3,7 @@ const path = require('path');
 const { Application, LoggerService, HttpService, AdapterHttpService, StaticService } = require("@be-true/server");
 const { DocsService } = require("@be-true/docs");
 const { SQLiteService } = require("@be-true/sqlite");
+const { AdapterWSService } = require("@be-true/ws");
 const { GetArticleList } = require("./command");
 const { ArticleRepository } = require('./repository');
 
@@ -11,6 +12,7 @@ const app = new Application()
     .addService(DocsService)
     .addService(HttpService)
     .addService(AdapterHttpService)
+    .addService(AdapterWSService)
     .addService(SQLiteService, { config: { filename: __dirname + '/../../data/database.db' } })
     .addService(ArticleRepository)
     .addService(StaticService, {

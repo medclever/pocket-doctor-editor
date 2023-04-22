@@ -1,0 +1,9 @@
+.filerPlace {
+    margin-top: 8px;
+}
+.ResourceRows {
+    margin-top: 16px;
+}
+.ResourceRowPlace + .ResourceRowPlace {
+    margin-top: 8px;
+}

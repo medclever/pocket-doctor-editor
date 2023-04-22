@@ -1,16 +1,21 @@
 import { Application, DIDefault } from "./core";
-import { ResourceItemModel, ResourceListModel } from "./models";
-import { ResourceItemView, ResourceListView } from "./views";
+import { ArticleItemModel, ArticleListModel } from "./models";
+import { ImageListModel } from "./models/ImageListModel";
+import { ArticleItemView, ArticleListView } from "./views";
+import { ImageListView } from "./views/ImageListView";
 
 export interface DI extends DIDefault {}
 export const rootModel = new Application<DI>();
 export enum r {
-  "resourceList" = "resourceList",
-  "resourceItem" = "resourceItem",
+  "articleList" = "articleList",
+  "articleItem" = "articleItem",
+  "imageList" = "imageList",
 }
 
 rootModel
-  .modelView(r.resourceList, new ResourceListModel(), ResourceListView)
-  .modelView(r.resourceItem, new ResourceItemModel(), ResourceItemView);
+  .modelView(r.articleList, new ArticleListModel(), ArticleListView)
+  .modelView(r.imageList, new ImageListModel(), ImageListView)
+  .modelView(r.articleItem, new ArticleItemModel(), ArticleItemView);
 
-rootModel.menu().item("Resources", [r.resourceList, r.resourceItem]);
+rootModel.menu().item("Articles", [r.articleList, r.articleItem]);
+rootModel.menu().item("Images", [r.imageList]);

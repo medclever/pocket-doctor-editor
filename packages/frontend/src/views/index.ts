@@ -1,3 +1,3 @@
-export * from "./ResourceItemView"
-export * from "./ResourceListView"
+export * from "./ArticleItemView"
+export * from "./ArticleListView"
 export * from "../components/ResourceRow"

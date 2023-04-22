@@ -1,19 +1,11 @@
-export interface ResourceAttributeType {
-    field: string,
-    label: string,
-    applied: string,
-    change: string | null,
-    overrideApplied: string | null, 
-    overrideChange: string | null, 
+export interface ArticleItem {
+    id: string,
+    position: number;
+    title: string
 }
 
-export interface ResourceItem {
+export interface ArticleItemShort {
     id: string,
-    attrs: ResourceAttributeType[]
-}
-
-export interface ResourceItemShort {
-    id: string,
-    name: string,
-    attrsChanged: string[],
+    position: number;
+    title: string;
 }

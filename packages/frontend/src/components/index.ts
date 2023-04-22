@@ -1,1 +1,1 @@
-export * from "./ResourceAttribute/ResourceAttribute"
+export * from "./ResourceRow"
