@@ -1,4 +1,4 @@
-.resourceRow {
+.Row {
     border: 1px solid grey;
     padding: 8px;
     width: 100%;
@@ -6,15 +6,18 @@
     display: flex;
     justify-content: space-between;
 }
-.resourceRowRight {
+.Row+.Row {
+    border-top: none;
+}
+.RowRight {
     display: flex;
 }
-.resourceRowChanged {
+.RowChanged {
     margin-right: 20px;
 }
-.resourceRowButtons {
+.RowButtons {
 
 }
-.resourceRowButton {
+.RowButton {
     
 }

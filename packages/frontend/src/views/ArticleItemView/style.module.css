@@ -1,36 +1,9 @@
-.buttonContainer {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    border: 1px solid grey;
-    background: white;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
-    width: 90%;
-    padding: 16px;
-    box-sizing: border-box;
-    
-    display: flex;
-    flex-flow: row-reverse nowrap;
-    align-items: center;
-    align-content: flex-start;
-}
-.buttonContainerShift {
-    height: 110px;
-}
-.button {
-    font-size: 20px;
-    background: none;
-    border: 1px solid grey;
-    background: white;
-    border-radius: 4px;
-    padding: 8px 24px;
-    cursor: pointer;
-}
-.button:hover {
-    background: lightgrey;
-}
-.button:active {
-    background: white;
+.container { width: 100%; }
+.title { margin-bottom: 24px; }
+.text,.textArea { width: 100%; box-sizing: border-box; margin-bottom: 16px; font-size: 18px; }
+.textArea { min-height: 300px; }
+.label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
 }

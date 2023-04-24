@@ -6,6 +6,7 @@
   "workspaces": [ "packages/*" ],
   "scripts": {
     "start": "npm run start -w @pde/server",
+    "start:front": "npm run start -w @pde/frontend",
     "build": "npm run build -w @pde/frontend",
     "export": "node export/export.js",
     "export:postgres": "node export/export-to-postgres.js",

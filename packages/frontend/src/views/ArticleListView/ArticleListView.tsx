@@ -4,6 +4,8 @@ import { observer } from "mobx-react-lite";
 import { RouterModel } from "../../core";
 import { ArticleListModel } from "../../models/ArticleListModel";
 import style from "./style.module.css";
+import { ArticleRow } from "../../components";
+import { r } from "../../rootModel";
 
 interface Props {
   model: ArticleListModel;
@@ -16,8 +18,12 @@ export const ArticleListView: FC<Props> = observer(({ model, router }) => {
       <h1>Articles</h1>
       {items.length > 0 && (
         <div className={style.ResourceRows}>
-          {items.map((item, index) => (
-            <div className={style.ResourceRowPlace}>{item.position} {item.title}</div>
+          {items.map(item => (
+            <ArticleRow
+              key={item.id}
+              name={(item.position ? item.position + '. ' : '') + item.title}
+              onClickEdit={() => router.push(r.articleItem, { id: item.id })}
+            />
           ))}
         </div>
       )}
