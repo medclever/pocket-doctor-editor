@@ -1,10 +1,18 @@
-class Article {
+const { state, stateList } = require('@be-true/stater');
+const { BaseAggregate } = require('../base');
+
+class Article extends BaseAggregate {
     #data;
     #langParts;
 
-    constructor(data, landParts) {
+    constructor(data, langParts) {
+        super();
         this.#data = data;
-        this.#langParts = landParts;
+        this.#langParts = langParts;
+
+        this.state = state(data).source('article');
+        this.stateLangParts = stateList(langParts).source('article_lang');
+        this._setState(this.state, this.stateLangParts);
     }
 
     presentToList(langID) {

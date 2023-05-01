@@ -26,9 +26,10 @@
   "dependencies": {
     "@be-true/config": "^0.3.0",
     "@be-true/docs": "^0.3.0",
-    "@be-true/server": "^0.3.0",
+    "@be-true/server": "^0.3.1",
     "@be-true/sqlite": "^0.3.0",
+    "@be-true/stater": "^0.0.1",
     "@be-true/utils": "^0.3.1",
-    "@be-true/ws": "^0.3.0"
+    "@be-true/ws": "^0.3.1"
   }
 }
