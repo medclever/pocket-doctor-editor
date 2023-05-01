@@ -6,7 +6,7 @@
   "private": false,
   "scripts": {
     "start": "node index.js",
-    "test": "metatests tests"
+    "test": "jest --verbose --runInBand"
   },
   "repository": {
     "type": "git",

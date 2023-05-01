@@ -1,7 +1,8 @@
 const { toMapGroup } = require("@be-true/utils");
-const { Article } = require("../domain/Article");
+const { Article } = require("../domain");
+const { BaseRepository } = require("../base");
 
-class ArticleRepository {
+class ArticleRepository extends BaseRepository {
     static service() {
         return {
             name: 'repoArticle',
@@ -9,22 +10,16 @@ class ArticleRepository {
         }
     }
 
-    #sqlite;
-
-    constructor({ sqlite }) {
-        this.#sqlite = sqlite;
-    }
-
     async getList() {
-        const data = await this.#sqlite.all('SELECT * FROM article ORDER BY position ASC');
-        const langParts = await this.#sqlite.all('SELECT * FROM article_lang');
+        const data = await this._sqlite.all('SELECT * FROM article ORDER BY position ASC');
+        const langParts = await this._sqlite.all('SELECT * FROM article_lang');
         const langPartsMap = toMapGroup(langParts, 'article_id');
         return data.map(data => new Article(data, langPartsMap[data.id]));
     }
 
     async getById(id) {
-        const data = await this.#sqlite.all(`SELECT * FROM article WHERE id = ${id}`);
-        const langParts = await this.#sqlite.all(`SELECT * FROM article_lang where article_id = ${id}`);
+        const data = await this._sqlite.all(`SELECT * FROM article WHERE id = ${id}`);
+        const langParts = await this._sqlite.all(`SELECT * FROM article_lang where article_id = ${id}`);
         return new Article(data[0], langParts);
     }
 }

@@ -12,6 +12,11 @@ class BaseAggregate {
         return this.state.getChanges();
     }
 
+    getState() {
+        this._assertState(this.state);
+        return this.state;
+    }
+
     getChangesBatch(size = 100) {
         this._assertState(this.state);
         return this.state.getChangesBatch({ size });

@@ -1,12 +1,11 @@
 const path = require('path');
-
 const { Application, LoggerService, HttpService, AdapterHttpService, StaticService } = require("@be-true/server");
 const { DocsService } = require("@be-true/docs");
 const { SQLiteService } = require("@be-true/sqlite");
 const { AdapterWSService } = require("@be-true/ws");
-const { GetArticleList } = require("./command");
+
 const { ArticleRepository } = require('./repository');
-const { GetArticle } = require('./command/GetArticle');
+const { CreateArticle, GetArticle, GetArticleList } = require('./command');
 
 const app = new Application()
     .addService(LoggerService, { config: { pretty: true } })
@@ -22,6 +21,7 @@ const app = new Application()
             prefix: '/'
         }
     })
+    .addCommand(new CreateArticle)
     .addCommand(new GetArticleList)
     .addCommand(new GetArticle)
     ;

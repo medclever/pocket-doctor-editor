@@ -5,6 +5,10 @@ class Article extends BaseAggregate {
     #data;
     #langParts;
 
+    static create({ data, langParts }) {
+        return new Article(data, langParts).asNew();
+    }
+
     constructor(data, langParts) {
         super();
         this.#data = data;
