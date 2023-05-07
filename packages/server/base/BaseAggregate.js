@@ -1,6 +1,8 @@
 const { compose } = require('@be-true/stater');
 
 class BaseAggregate {
+    state;
+
     asNew() {
         this._assertState(this.state);
         this.state.asNew();

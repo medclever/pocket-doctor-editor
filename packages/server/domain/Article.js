@@ -14,9 +14,18 @@ class Article extends BaseAggregate {
         this.#data = data;
         this.#langParts = langParts;
 
-        this.state = state(data).source('article');
+        this.stateData = state(data).source('article');
         this.stateLangParts = stateList(langParts).source('article_lang');
-        this._setState(this.state, this.stateLangParts);
+        this._setState(this.stateData, this.stateLangParts);
+    }
+
+    update({ data, langParts }) {
+        this.stateData.mset(data);
+        for (const langData of langParts) {
+            const lang = this.stateLangParts.find(i => i.get('lang_id') === langData.lang_id);
+            if (lang) lang.mset(langData);
+        }
+        return this;
     }
 
     presentToList(langID) {

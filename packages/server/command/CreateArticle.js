@@ -7,7 +7,7 @@ class CreateArticle extends Command {
     async handle(params, { repoArticle }) {
         const article = Article.create(params);
         await repoArticle.persist(article);
-        return {}
+        return {};
     }
 
 }

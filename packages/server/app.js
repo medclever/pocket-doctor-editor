@@ -5,7 +5,7 @@ const { SQLiteService } = require("@be-true/sqlite");
 const { AdapterWSService } = require("@be-true/ws");
 
 const { ArticleRepository } = require('./repository');
-const { CreateArticle, GetArticle, GetArticleList } = require('./command');
+const { CreateArticle, UpdateArticle, GetArticle, GetArticleList } = require('./command');
 
 const app = new Application()
     .addService(LoggerService, { config: { pretty: true } })
@@ -22,8 +22,9 @@ const app = new Application()
         }
     })
     .addCommand(new CreateArticle)
-    .addCommand(new GetArticleList)
+    .addCommand(new UpdateArticle)
     .addCommand(new GetArticle)
+    .addCommand(new GetArticleList)
     ;
 
 module.exports = {

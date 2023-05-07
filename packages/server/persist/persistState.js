@@ -1,7 +1,7 @@
-const { sourceMapConfig } = require('./index');
+const { resources } = require('./resources');
 const { insert, ParamsEmptyCollector, update, deleteHard } = require('@be-true/sqlk');
 
-export const persistState = async (state, settings, sqlite) => {
+const persistState = async (state, settings, sqlite) => {
   const run = async (sqlite, actions) => {
     for (const batch of state.getChangesBatch({ size: settings.batch, actions })) {
       const queries = [];
@@ -9,7 +9,7 @@ export const persistState = async (state, settings, sqlite) => {
 
       for (const change of batch) {
         const toStorage = {
-          ...sourceMapConfig[change.source],
+          ...resources[change.source],
           params: change.params,
           collector,
         };
@@ -24,7 +24,7 @@ export const persistState = async (state, settings, sqlite) => {
       }
 
       if (queries.length) {
-        await sqlite.run(queries.join(";\n"), collector.getParams());
+        await sqlite.exec(queries.join(";\n") + ";", collector.getParams());
       }
     }
   };
@@ -33,4 +33,8 @@ export const persistState = async (state, settings, sqlite) => {
   await run(sqlite, ['update']);
   await run(sqlite, ['delete']);
 };
+
+module.exports = {
+  persistState
+}
 

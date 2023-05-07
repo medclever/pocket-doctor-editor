@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/medclever/pocket-doctor-editor#readme",
   "dependencies": {
+    "@be-true/sqlk": "^0.0.2",
     "cheerio": "^1.0.0-rc.10",
     "image-size": "^1.0.1",
     "jest": "^26.6.0",

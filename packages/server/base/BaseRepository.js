@@ -1,5 +1,6 @@
 const { compose } = require('@be-true/stater');
 const { toArray } = require('@be-true/utils');
+const { persistState } = require('../persist');
 
 class BaseRepository {
     _sqlite;
@@ -18,7 +19,7 @@ class BaseRepository {
         if (!aggs.length) return;
         const aggsResult = aggs.filter((i) => i !== undefined);
         const state = compose(...aggsResult.map((i) => i.getState()));
-        await persistState(state, settings);
+        await persistState(state, settings, this._sqlite);
     }
 }
 
