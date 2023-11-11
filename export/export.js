@@ -14,7 +14,7 @@ const ImageRepository = require('./repo/ImageRepository');
     })
 
     // const exportRoot = path.join(__dirname, '../../pocket-doctor/export');
-    const exportRoot = '/Users/eugen/Projects/PocketDoctorUniversal/app/export';
+    const exportRoot = '/Users/eugen/Sites/medclever/pocket-doctor-editor/data/json';
     const langs = [{ code: 'ru', langId: 1 }, { code: 'en', langId: 2 }];
     let articleAll = []
     let imageAll = []
@@ -42,8 +42,8 @@ const ImageRepository = require('./repo/ImageRepository');
           important: article.data.important,
           text: article.data.text,
         }
-        fs.writeFileSync(`${exportRoot}/data/article_${article.data.id}_${lang.code}.json`, JSON.stringify(dataJSON));
-        articleAll.push(`    require("./data/article_${article.data.id}_${lang.code}.json"),`);
+        fs.writeFileSync(`${exportRoot}/article_${article.data.id}_${lang.code}.json`, JSON.stringify(dataJSON, null, 4));
+        articleAll.push(`    require("./article_${article.data.id}_${lang.code}.json"),`);
       }
       
       menuAll[lang.code] = articles.map((a, index) => ({
@@ -64,8 +64,8 @@ const ImageRepository = require('./repo/ImageRepository');
           width: dimensions.width,
           height: dimensions.height,
         }
-        fs.writeFileSync(`${exportRoot}/data/image_${image.id}_${lang.code}.json`, JSON.stringify(dataJSON));
-        imageAll.push(`    require("./data/image_${image.id}_${lang.code}.json"),`);
+        fs.writeFileSync(`${exportRoot}/image_${image.id}_${lang.code}.json`, JSON.stringify(dataJSON, null, 4));
+        imageAll.push(`    require("./image_${image.id}_${lang.code}.json"),`);
       }
     }
 
@@ -90,7 +90,7 @@ const ImageRepository = require('./repo/ImageRepository');
     fs.writeFileSync(`${exportRoot}/articles.ts`, indexFile);
 
     // save menu.json
-    fs.writeFileSync(`${exportRoot}/data/menu.json`, JSON.stringify(menuAll));
+    fs.writeFileSync(`${exportRoot}/menu.json`, JSON.stringify(menuAll, null, 4));
     let menuFile = 
     `export type MenuLangKey = 'ru' | 'en'; \n` +
     `export type MenuItem = { \n` +
