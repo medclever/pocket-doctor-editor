@@ -13,8 +13,7 @@ const ImageRepository = require('./repo/ImageRepository');
       driver: sqlite3.Database
     })
 
-    // const exportRoot = path.join(__dirname, '../../pocket-doctor/export');
-    const exportRoot = '/Users/eugen/Sites/medclever/pocket-doctor-editor/data/json';
+    const exportRoot = path.join(__dirname, '../../pocket-doctor/app/export');
     const langs = [{ code: 'ru', langId: 1 }, { code: 'en', langId: 2 }];
     let articleAll = []
     let imageAll = []
@@ -42,8 +41,8 @@ const ImageRepository = require('./repo/ImageRepository');
           important: article.data.important,
           text: article.data.text,
         }
-        fs.writeFileSync(`${exportRoot}/article_${article.data.id}_${lang.code}.json`, JSON.stringify(dataJSON, null, 4));
-        articleAll.push(`    require("./article_${article.data.id}_${lang.code}.json"),`);
+        fs.writeFileSync(`${exportRoot}/data/article_${article.data.id}_${lang.code}.json`, JSON.stringify(dataJSON, null, 4));
+        articleAll.push(`    require("./data/article_${article.data.id}_${lang.code}.json"),`);
       }
       
       menuAll[lang.code] = articles.map((a, index) => ({
@@ -64,8 +63,8 @@ const ImageRepository = require('./repo/ImageRepository');
           width: dimensions.width,
           height: dimensions.height,
         }
-        fs.writeFileSync(`${exportRoot}/image_${image.id}_${lang.code}.json`, JSON.stringify(dataJSON, null, 4));
-        imageAll.push(`    require("./image_${image.id}_${lang.code}.json"),`);
+        fs.writeFileSync(`${exportRoot}/data/image_${image.id}_${lang.code}.json`, JSON.stringify(dataJSON, null, 4));
+        imageAll.push(`    require("./data/image_${image.id}_${lang.code}.json"),`);
       }
     }
 
