@@ -89,7 +89,7 @@ const ImageRepository = require('./repo/ImageRepository');
     fs.writeFileSync(`${exportRoot}/articles.ts`, indexFile);
 
     // save menu.json
-    fs.writeFileSync(`${exportRoot}/menu.json`, JSON.stringify(menuAll, null, 4));
+    fs.writeFileSync(`${exportRoot}/data/menu.json`, JSON.stringify(menuAll, null, 4));
     let menuFile = 
     `export type MenuLangKey = 'ru' | 'en'; \n` +
     `export type MenuItem = { \n` +
